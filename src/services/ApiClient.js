@@ -13,6 +13,7 @@
 
 import superagent from 'superagent'
 import querystring from 'querystring'
+import { TokenService } from './token/TokenService'
 
 /**
  * @module ApiClient
@@ -303,12 +304,9 @@ class ApiClient {
 
           break
         case 'bearer':
-          if (auth.accessToken) {
-            var localVarBearerToken =
-              typeof auth.accessToken === 'function' ? auth.accessToken() : auth.accessToken
-            request.set({ Authorization: 'Bearer ' + localVarBearerToken })
-          }
-
+          var tokenService = new TokenService()
+          var localVarBearerToken = tokenService.token
+          request.set({ Authorization: 'Bearer ' + localVarBearerToken })
           break
         case 'apiKey':
           if (auth.apiKey) {

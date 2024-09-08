@@ -1,5 +1,6 @@
 import { createRouter, createWebHistory } from 'vue-router'
 import LoginView from '@/views/login/LoginView.vue'
+import Platform from '@/platform/Platform.vue'
 
 const routes = [
   {
@@ -20,8 +21,24 @@ const routes = [
   {
     path: '/platform',
     name: 'platform',
-    component: () => import('@/views/register/ActivateAccountView.vue'),
-    children: []
+    component: Platform,
+    children: [
+      {
+        path: 'books',
+        name: 'platform-books',
+        component: () => import('@/platform/views/Home.vue')
+      },
+      {
+        path: 'my/books',
+        name: 'my-books',
+        component: () => import('@/platform/views/MyBooks.vue')
+      },
+      {
+        path: 'my/books/create',
+        name: 'create-book',
+        component: () => import('@/platform/views/CreateBook.vue')
+      }
+    ]
   }
   // Adicione outras rotas conforme necessário
 ]

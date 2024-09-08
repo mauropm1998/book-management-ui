@@ -72,7 +72,7 @@ const login = () => {
         } else {
             // Save the token
             tokenService.token = data.token;
-            router.push({ name: "books" });
+            router.push({ name: "platform-books" });
         }
     })
 }

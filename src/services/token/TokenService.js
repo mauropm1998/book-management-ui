@@ -4,6 +4,10 @@ export class TokenService {
   }
 
   get token() {
-    return localStorage.getItem('token').toString()
+    if (localStorage.getItem('token')) {
+      return localStorage.getItem('token')
+    } else {
+      return ''
+    }
   }
 }
